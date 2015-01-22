@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<h:form>
+
+		<p:panel header="Cadastro de Cidades">
+			<p:messages></p:messages>
+			<p:panelGrid id="pgcidade" columns="2">
+
+				<p:outputLabel value="Estado"></p:outputLabel>
+				<p:selectOneMenu value="#{cidadeBean.cidade.estado}"
+					converter="#{estadoConverter}">
+					<p:ajax listener="#{cidadeBean.busarCidades}" update="cid" process="@this" />
+<!-- 					valueChangeListener="#{cidadeBean.busarCidades}"> -->
+					<f:selectItem noSelectionOption="true" itemLabel="Selecione" />
+					<f:selectItems value="#{estadoBean.estados}" var="est"
+						itemLabel="#{est.uf}">
+					</f:selectItems>
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Cidade"></p:outputLabel>
+				<p:inputText id="cid" value="#{cidadeBean.cidade.nome}"></p:inputText>
+
+
+			</p:panelGrid>
+
+			<p:commandButton value="Salvar" action="#{cidadeBean.salvar}"
+				update="@form"></p:commandButton>
+		</p:panel>
+
+		<p:panel header="Lista de Cidades">
+
+			<p:panelGrid columns="2">
+
+				<p:outputLabel value="Estado"></p:outputLabel>
+				<p:selectOneMenu value="#{usuarioBean.usuario.cidade.estado}"
+					converter="#{estadoConverter}"
+					valueChangeListener="#{cidadeBean.busarCidades}">
+					<f:selectItem noSelectionOption="true" itemLabel="selecione" />
+					<f:selectItems value="#{estadoBean.estados}" var="est"
+						itemLabel="#{est.uf}">
+					</f:selectItems>
+					<f:ajax event="change" render="selCidade"></f:ajax>
+				</p:selectOneMenu>
+
+
+				<p:outputLabel value="Cidade"></p:outputLabel>
+				<p:selectOneListbox value="#{usuarioBean.usuario.cidade}"
+					converter="#{cidadeConverter}" id="selCidade" filter="true" filterMatchMode="contains">
+					<f:selectItems value="#{cidadeBean.cidades}" var="cid"
+						itemLabel="#{cid.nome}" >
+					</f:selectItems>
+				</p:selectOneListbox>
+
+			</p:panelGrid>
+		</p:panel>
+
+
+	</h:form>
+</body>
+</html>

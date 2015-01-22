@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h:form>
+		<p:panel header="Cadastro de Usuarios">
+			<p:messages>
+			</p:messages>
+
+			<p:panelGrid columns="2" id="pgUsuaro">
+
+				<p:outputLabel value="Nome"></p:outputLabel>
+				<p:inputText value="#{usuarioBean.usuario.nome}"></p:inputText>
+
+				<p:outputLabel value="Email"></p:outputLabel>
+				<p:inputText value="#{usuarioBean.usuario.email}"></p:inputText>
+
+				<p:outputLabel value="Senha"></p:outputLabel>
+				<p:password value="#{usuarioBean.usuario.senha}"></p:password>
+
+<!-- 				<p:outputLabel value="Estado"></p:outputLabel> -->
+<!-- 				<p:selectOneMenu value="#{usuarioBean.usuario.estado}" -->
+<!-- 					converter="#{estadoConverter}"> -->
+<!-- 					<f:selectItems value="#{estadoBean.estados}" var="est" -->
+<!-- 						itemLabel="#{est.uf}"> -->
+<!-- 					</f:selectItems> -->
+<!-- 				</p:selectOneMenu> -->
+
+			</p:panelGrid>
+
+			<p:commandButton value="salvar" action="#{usuarioBean.salvar}"
+				update="@form"></p:commandButton>
+
+		</p:panel>
+<!-- 		<p:panel header="Lista de Usuarios"> -->
+
+<!-- 			<p:dataTable value="#{usuarioBean.usuarioList}" var="usuario" -->
+<!-- 				rows="5" paginator="true" paginatorAlwaysVisible="false"> -->
+
+<!-- 				<p:column headerText="ID"> -->
+<!-- 					<h:outputText value="#{usuario.id}"></h:outputText> -->
+<!-- 				</p:column> -->
+
+<!-- 				<p:column headerText="Nome"> -->
+<!-- 					<h:outputText value="#{usuario.nome}"></h:outputText> -->
+<!-- 				</p:column> -->
+
+<!-- 				<p:column headerText="Email"> -->
+<!-- 					<h:outputText value="#{usuario.email}"></h:outputText> -->
+<!-- 				</p:column> -->
+
+<!-- 				<p:column headerText="UF"> -->
+<!-- 					<h:outputText value="#{usuario.estado.uf}"></h:outputText> -->
+<!-- 				</p:column> -->
+
+<!-- 				<p:column headerText="senha"> -->
+<!-- 					<h:outputText value="#{usuario.senha}"></h:outputText> -->
+<!-- 				</p:column> -->
+
+<!-- 				<p:column headerText="Ação"> -->
+<!-- 					<p:commandButton icon="ui-icon-trash" title="Excluir" -->
+<!-- 						oncomplete="confirmacao.show()" immediate="true" update="@form"> -->
+<!-- 						<f:setPropertyActionListener target="#{usuarioBean.usuario}" -->
+<!-- 							value="#{usuario}" /> -->
+
+<!-- 					</p:commandButton> -->
+
+<!-- 					<p:commandButton icon="ui-icon-pencil" title="Editar" -->
+<!-- 						update="@form"> -->
+<!-- 						<f:setPropertyActionListener target="#{usuarioBean.usuario}" -->
+<!-- 							value="#{usuario}" /> -->
+<!-- 					</p:commandButton> -->
+<!-- 				</p:column> -->
+
+<!-- 			</p:dataTable> -->
+
+<!-- 			<p:confirmDialog widgetVar="confirmacao" -->
+<!-- 				message="Tem certesa que Deseja Excluir ?" header="Aviso" -->
+<!-- 				severity="alert" closable="true"> -->
+<!-- 				<p:commandButton title="Sim" alt="Sim" value="Sim" -->
+<!-- 					actionListener="#{usuarioBean.excluir}" -->
+<!-- 					onclick="confirmacao.hide()" update="@form" process="@this"></p:commandButton> -->
+
+<!-- 				<p:commandButton title="Não" alt="Não" value="Não" -->
+<!-- 					onclick="confirmacao.hide()"></p:commandButton> -->
+<!-- 			</p:confirmDialog> -->
+<!-- 		</p:panel> -->
+
+	</h:form>
+
+</body>
+</html>

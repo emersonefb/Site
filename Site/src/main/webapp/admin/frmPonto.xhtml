@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<h:form>
+
+		<p:panel header="Lista de Cidades">
+
+			<p:panelGrid columns="2">
+
+				<p:outputLabel value="Grupo"></p:outputLabel>
+				<p:selectOneMenu value="#{grupoBean.grupo}">
+					converter="#{GrupoConverter}">
+<!-- 					valueChangeListener="#{grupoBean.busargrupo}"> -->
+					<p:ajax listener="#{grupoBean.busargrupo}" update="selPeriodo"
+						process="@this" />
+					<f:selectItem noSelectionOption="true" itemLabel="selecione" />
+					<f:selectItems value="#{grupoBean.grupos}" var="gru"
+						itemLabel="#{gru.nome}">
+					</f:selectItems>
+					<f:ajax event="change" render="selPeriodo"></f:ajax>
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Periodo"></p:outputLabel>
+				<p:selectOneMenu value="#{grupoBean.periodoa}" id="selPeriodo"
+					filter="true" filterMatchMode="contains">
+					<!-- 					converter="{GrupoConverter}"> -->
+
+					<!-- 					valueChangeListener="{cidadeBean.busarCidades}"> -->
+					<f:selectItem noSelectionOption="true" itemLabel="selecione" />
+					<f:selectItems value="#{grupoBean.grupos}" var="per"
+						itemLabel="#{per.nome}">
+					</f:selectItems>
+					<!-- 					<f:ajax event="change" render="selFuncionario"></f:ajax> -->
+				</p:selectOneMenu>
+
+				<!-- 				<p:outputLabel value="Funcionario"></p:outputLabel> -->
+				<!-- 				<p:selectOneMenu value="{usuarioBean.usuario.cidade.estado}" -->
+				<!-- 					converter="{estadoConverter}" id="selFuncionario" filter="true" filterMatchMode="contains" -->
+				<!-- 					valueChangeListener="{cidadeBean.busarCidades}"> -->
+				<!-- 					<f:selectItem noSelectionOption="true" itemLabel="selecione" /> -->
+				<!-- 					<f:selectItems value="{estadoBean.estados}" var="est" -->
+				<!-- 						itemLabel="{est.uf}"> -->
+				<!-- 					</f:selectItems> -->
+				<!-- 					<f:ajax event="change" render="selLista"></f:ajax> -->
+				<!-- 				</p:selectOneMenu> -->
+
+
+				<!-- 				<p:outputLabel value="Lista"></p:outputLabel> -->
+				<!-- 				<p:selectOneListbox value="{usuarioBean.usuario.cidade}" -->
+				<!-- 					converter="{cidadeConverter}" id="selLista" filter="true" filterMatchMode="contains"> -->
+				<!-- 					<f:selectItems value="{cidadeBean.cidades}" var="cid" -->
+				<!-- 						itemLabel="{cid.nome}" > -->
+				<!-- 					</f:selectItems> -->
+				<!-- 				</p:selectOneListbox> -->
+
+			</p:panelGrid>
+		</p:panel>
+
+
+	</h:form>
+</body>
+</html>
